@@ -23,7 +23,7 @@ class API {
       Uri(scheme: 'https', host: host, path: _paths[endpoint]);
 
   static Map<EndPoint, String> _paths = {
-    EndPoint.cases: "case",
+    EndPoint.cases: "cases",
     EndPoint.casesSuspected: "casesSuspected",
     EndPoint.casesConfirmed: "casesConfirmed",
     EndPoint.deaths: "deaths",

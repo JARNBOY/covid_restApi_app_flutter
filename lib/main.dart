@@ -49,13 +49,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _accessToken = "";
-
+  int _cases;
+  int _deaths;
   void _incrementCounter() async {
     final apiService = APIServices(API.sanbox());
     final accessToken = await apiService.getAccessToken();
-
+    final cases = await apiService.getEndpointData(
+        accessToken: accessToken, endpoint: EndPoint.cases);
+    final deaths = await apiService.getEndpointData(
+        accessToken: accessToken, endpoint: EndPoint.deaths);
     setState(() {
       _accessToken = accessToken;
+      _cases = cases;
+      _deaths = deaths;
     });
   }
 
@@ -97,9 +103,19 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_accessToken',
+              '$_accessToken\n',
               style: Theme.of(context).textTheme.headline4,
             ),
+            if (_cases != null)
+              Text(
+                'cases $_cases\n',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            if (_deaths != null)
+              Text(
+                'deaths $_deaths',
+                style: Theme.of(context).textTheme.headline4,
+              ),
           ],
         ),
       ),

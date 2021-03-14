@@ -40,6 +40,7 @@ class APIServices {
         final String responseJsonKeys = _responseJsonKeys[endpoint];
         final int result = endpointData[responseJsonKeys];
         if (result != null) {
+          print("getEndpointData -> $result");
           return result;
         }
       }
@@ -51,7 +52,7 @@ class APIServices {
   }
 
   static Map<EndPoint, String> _responseJsonKeys = {
-    EndPoint.cases: "case",
+    EndPoint.cases: "cases",
     EndPoint.casesSuspected: "data",
     EndPoint.casesConfirmed: "data",
     EndPoint.deaths: "data",
